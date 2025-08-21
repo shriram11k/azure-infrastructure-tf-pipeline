@@ -1,15 +1,10 @@
-# Terraform module: vnet
-# Replace with actual resource definitions
-
-terraform {
-  required_version = ">= 1.3.0"
+resource "azurerm_virtual_network" "this" {
+  name                = var.name
+  address_space       = var.address_space
+  location            = var.location
+  resource_group_name = var.resource_group_name
 }
 
-provider "azurerm" {
-  features {}
-}
-
-resource "azurerm_resource_group" "vnet_rg" {
-  name     = "vnet-rg"
-  location = "East US"
+output "name" {
+  value = azurerm_virtual_network.this.name
 }

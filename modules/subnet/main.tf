@@ -1,15 +1,10 @@
-# Terraform module: subnet
-# Replace with actual resource definitions
-
-terraform {
-  required_version = ">= 1.3.0"
+resource "azurerm_subnet" "this" {
+  name                 = var.name
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = var.vnet_name
+  address_prefixes     = var.address_prefixes
 }
 
-provider "azurerm" {
-  features {}
-}
-
-resource "azurerm_resource_group" "subnet_rg" {
-  name     = "subnet-rg"
-  location = "East US"
+output "id" {
+  value = azurerm_subnet.this.id
 }
